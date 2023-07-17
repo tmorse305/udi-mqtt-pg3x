@@ -260,8 +260,8 @@
                     <p id="" editor="ST_DIMMER" init="ST" />
                 </cmd>
                 <cmd id="DOF" />
-                <cmd id="FDUP" />
-                <cmd id="FDDOWN" />
+                <cmd id="BRT" />
+                <cmd id="DIM" />
             </accepts>
         </cmds>
     </nodeDef>

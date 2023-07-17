@@ -1005,11 +1005,11 @@ class MQDimmer(udi_interface.Node):
         try:
             self.dimmer = int(command.get('value'))
         except Exception as ex:
-            LOGGER.info(f"Unexpected Dimmer Value {ex}, assuming High")
-            self.dimmer = 100
+            LOGGER.info(f"Unexpected Dimmer Value {ex}, assuming Medium")
+            self.dimmer = 50
         if 255 < self.dimmer < 0:
-            LOGGER.error(f"Unexpected Dimmer Value {self.dimmer}, assuming High")
-            self.dimmer = 100
+            LOGGER.error(f"Unexpected Dimmer Value {self.dimmer}, assuming Medium")
+            self.dimmer = 50
         self.setDriver("ST", self.dimmer)
         self.controller.mqtt_pub(self.cmd_topic, self.dimmer)
 
@@ -1019,20 +1019,21 @@ class MQDimmer(udi_interface.Node):
         self.controller.mqtt_pub(self.cmd_topic, self.dimmer)
 
     def brighten(self, command):
-        self.controller.mqtt_pub(self.cmd_topic, "+")
+        self.controller.mqtt_pub(self.cmd_topic, self.dimmer "+") #added self.dimmer 
 
     def dim(self, command):
-        self.controller.mqtt_pub(self.cmd_topic, "-")
+        self.controller.mqtt_pub(self.cmd_topic, self.dimmer "-") #addes self.dimmer
 
     def query(self, command=None):
-        self.controller.mqtt_pub(self.cmd_topic, "")
+        self.controller.mqtt_pub(self.cmd_topic, self.dimmer "") #added self.dimmer
         self.reportDrivers()
 
-    drivers = [{"driver": "ST", "value": 0, "uom": 100}]
+    drivers = [{"driver": "ST", "value": 0, "uom": 100},
+				{"driver": "DIMMER", "value": 0, "uom": 100}]
 
     id = "MQDIMMER"
     hint = [4, 2, 0, 0]
-    commands = {"QUERY": query, "DON": set_on, "DOF": set_off, "FDUP": brighten, "FDDOWN": dim}
+    commands = {"QUERY": query, "DON": set_on, "DOF": set_off, "BRT": brighten, "DIM": dim}
 
 if __name__ == "__main__":
     try:
