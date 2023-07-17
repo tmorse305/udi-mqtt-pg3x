@@ -1007,7 +1007,7 @@ class MQDimmer(udi_interface.Node):
         except Exception as ex:
             LOGGER.info(f"Unexpected Dimmer Value {ex}, assuming Medium")
             self.dimmer = 50
-        if 255 < self.dimmer < 0:
+        if 100 < self.dimmer < 0:
             LOGGER.error(f"Unexpected Dimmer Value {self.dimmer}, assuming Medium")
             self.dimmer = 50
         self.setDriver("ST", self.dimmer)
@@ -1025,7 +1025,7 @@ class MQDimmer(udi_interface.Node):
         self.controller.mqtt_pub(self.cmd_topic, "-") #added self.dimmer
 
     def query(self, command=None):
-        self.controller.mqtt_pub(self.cmd_topic, "") #added self.dimmer
+        #self.controller.mqtt_pub(self.cmd_topic, "") #added self.dimmer
         self.reportDrivers()
 
     drivers = [{"driver": "ST", "value": 0, "uom": 100},
