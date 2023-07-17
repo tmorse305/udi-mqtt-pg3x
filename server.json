@@ -9,7 +9,7 @@
     "logLevel": "INFO",
     "customParams": {
       "mqtt_server": "localhost",
-      "mqtt_port": 1885,
+      "mqtt_port": 1883,
       "mqtt_user": "username",
       "mqtt_password": "password"
     },

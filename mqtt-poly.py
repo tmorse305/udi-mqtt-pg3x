@@ -181,7 +181,7 @@ class Controller(udi_interface.Node):
             elif dev["type"] == "dimmer":
                 if not self.poly.getNode(address):
                     LOGGER.info("Adding {} {}".format(dev["type"], name))
-                    self.poly.addNode(MQFan(self.poly, self.address, address, name, dev))
+                    self.poly.addNode(MQDimmer(self.poly, self.address, address, name, dev))
                     self._add_status_topics(dev, [dev["status_topic"]])
             else:
                 LOGGER.error("Device type {} is not yet supported".format(dev["type"]))
@@ -1028,7 +1028,7 @@ class MQDimmer(udi_interface.Node):
         self.controller.mqtt_pub(self.cmd_topic, "")
         self.reportDrivers()
 
-    drivers = [{"driver": "ST", "value": 0-255, "uom": 100}]
+    drivers = [{"driver": "ST", "value": 0, "uom": 100}]
 
     id = "MQDIMMER"
     hint = [4, 2, 0, 0]

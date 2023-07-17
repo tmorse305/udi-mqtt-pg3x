@@ -134,7 +134,7 @@ FLAG-10 = ON
 FLAG-11 = OFF
 FLAG-12 = ---
 
-# rgbw srip
+# rgbw strip
 ND-MQRGBW-NAME = MQTT RGBW Strip
 ND-MQSENS-ICON = GenericCtl
 
@@ -170,7 +170,7 @@ CMD-DIMMER-FDUP-NAME = Brighten
 CMD-DIMMER-FDDOWN-NAME = Dim
 
 #may need values here
-#FANSPEED-0 = Off
-#FANSPEED-1 = Low
-#FANSPEED-2 = Medium
-#FANSPEED-3 = High
+#DIMSET-0 = Off
+#DIMSET-1 = Low
+#FANSET-2 = Medium
+#FANSET-3 = High
