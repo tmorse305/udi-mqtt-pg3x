@@ -1019,13 +1019,13 @@ class MQDimmer(udi_interface.Node):
         self.controller.mqtt_pub(self.cmd_topic, self.dimmer)
 
     def brighten(self, command):
-        self.controller.mqtt_pub(self.cmd_topic, self.dimmer "+") #added self.dimmer 
+        self.controller.mqtt_pub(self.cmd_topic, "+") #added self.dimmer 
 
     def dim(self, command):
-        self.controller.mqtt_pub(self.cmd_topic, self.dimmer "-") #addes self.dimmer
+        self.controller.mqtt_pub(self.cmd_topic, "-") #added self.dimmer
 
     def query(self, command=None):
-        self.controller.mqtt_pub(self.cmd_topic, self.dimmer "") #added self.dimmer
+        self.controller.mqtt_pub(self.cmd_topic, "") #added self.dimmer
         self.reportDrivers()
 
     drivers = [{"driver": "ST", "value": 0, "uom": 100},
