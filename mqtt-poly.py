@@ -991,7 +991,7 @@ class MQDimmer(udi_interface.Node):
             dimmer = int(json_payload['Dimmer'])
         except Exception as ex:
             LOGGER.error(f"Could not decode payload {payload}: {ex}")
-        if 255 < dimmer < 0:
+        if 100 < dimmer < 0:
             LOGGER.error(f"Unexpected Dimmer Value {dimmer}")
             return
         if self.dimmer == 0 and dimmer > 0:
@@ -1006,10 +1006,10 @@ class MQDimmer(udi_interface.Node):
             self.dimmer = int(command.get('value'))
         except Exception as ex:
             LOGGER.info(f"Unexpected Dimmer Value {ex}, assuming High")
-            self.dimmer = 255
+            self.dimmer = 100
         if 255 < self.dimmer < 0:
             LOGGER.error(f"Unexpected Dimmer Value {self.dimmer}, assuming High")
-            self.dimmer = 255
+            self.dimmer = 100
         self.setDriver("ST", self.dimmer)
         self.controller.mqtt_pub(self.cmd_topic, self.dimmer)
 
