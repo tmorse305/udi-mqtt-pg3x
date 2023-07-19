@@ -331,6 +331,66 @@ class MQSwitch(udi_interface.Node):
     commands = {"QUERY": query, "DON": set_on, "DOF": set_off}
 
 
+# Class for a single channel Dimmer. 
+# Currently supports XXXX
+class MQDimmer(udi_interface.Node):
+    def __init__(self, polyglot, primary, address, name, device):
+        super().__init__(polyglot, primary, address, name)
+        self.controller = self.poly.getNode(self.primary)
+        self.cmd_topic = device["cmd_topic"]
+        self.dimmer = 0
+
+    def updateInfo(self, payload, topic: str):
+        try:
+            json_payload = json.loads(payload)
+            dimmer = int(json_payload['Dimmer'])
+        except Exception as ex:
+            LOGGER.error(f"Could not decode payload {payload}: {ex}")
+        if 100 < dimmer < 0:
+            LOGGER.error(f"Unexpected Dimmer Value {dimmer}")
+            return
+        if self.dimmer == 0 and dimmer > 0:
+            self.reportCmd("DON")
+        if self.dimmer > 0 and dimmer == 0:
+            self.reportCmd("DOF")
+        self.dimmer = dimmer
+        self.setDriver("ST", self.dimmer)
+
+    def set_on(self, command):
+        try:
+            self.dimmer = int(command.get('value'))
+        except Exception as ex:
+            LOGGER.info(f"Unexpected Dimmer Value {ex}, assuming Medium")
+            self.dimmer = 50
+        if 100 < self.dimmer < 0:
+            LOGGER.error(f"Unexpected Dimmer Value {self.dimmer}, assuming Medium")
+            self.dimmer = 50
+        self.setDriver("ST", self.dimmer)
+        self.controller.mqtt_pub(self.cmd_topic, self.dimmer)
+
+    def set_off(self, command):
+        self.dimmer = 0
+        self.setDriver("ST", self.dimmer)
+        self.controller.mqtt_pub(self.cmd_topic, self.dimmer)
+
+    def brighten(self, command):
+        self.controller.mqtt_pub(self.cmd_topic, "+")
+
+    def dim(self, command):
+        self.controller.mqtt_pub(self.cmd_topic, "-")
+
+    def query(self, command=None):
+        self.controller.mqtt_pub(self.cmd_topic, "")
+        self.reportDrivers()
+
+    drivers = [{"driver": "ST", "value": 0, "uom": 100},
+				{"driver": "DIMMER", "value": 0, "uom": 100}]
+
+    id = "MQDIMMER"
+    hint = [4, 2, 0, 0]
+    commands = {"QUERY": query, "DON": set_on, "DOF": set_off, "BRT": brighten, "DIM": dim}
+
+
 class MQFan(udi_interface.Node):
     def __init__(self, polyglot, primary, address, name, device):
         super().__init__(polyglot, primary, address, name)
@@ -520,7 +580,6 @@ class MQSensor(udi_interface.Node):
     # payload is direct (like SW) not JSON encoded (like SENSOR)
     # example device: liquid float {OK, LO, HI}
     # example condition: IOT devices sensor connections {OK, NOK, ERR(OR)}
-
 
 class MQFlag(udi_interface.Node):
     def __init__(self, polyglot, primary, address, name, device):
@@ -976,64 +1035,8 @@ class MQRGBWstrip(udi_interface.Node):
     commands = {"QUERY": query, "DON": led_on, "DOF": led_off, "SETRGBW": rgbw_set}
 
 
-# Class for a single channel Dimmer. 
-# Currently supports XXXX
-class MQDimmer(udi_interface.Node):
-    def __init__(self, polyglot, primary, address, name, device):
-        super().__init__(polyglot, primary, address, name)
-        self.controller = self.poly.getNode(self.primary)
-        self.cmd_topic = device["cmd_topic"]
-        self.dimmer = 0
 
-    def updateInfo(self, payload, topic: str):
-        try:
-            json_payload = json.loads(payload)
-            dimmer = int(json_payload['Dimmer'])
-        except Exception as ex:
-            LOGGER.error(f"Could not decode payload {payload}: {ex}")
-        if 100 < dimmer < 0:
-            LOGGER.error(f"Unexpected Dimmer Value {dimmer}")
-            return
-        if self.dimmer == 0 and dimmer > 0:
-            self.reportCmd("DON")
-        if self.dimmer > 0 and dimmer == 0:
-            self.reportCmd("DOF")
-        self.dimmer = dimmer
-        self.setDriver("ST", self.dimmer)
 
-    def set_on(self, command):
-        try:
-            self.dimmer = int(command.get('value'))
-        except Exception as ex:
-            LOGGER.info(f"Unexpected Dimmer Value {ex}, assuming Medium")
-            self.dimmer = 50
-        if 100 < self.dimmer < 0:
-            LOGGER.error(f"Unexpected Dimmer Value {self.dimmer}, assuming Medium")
-            self.dimmer = 50
-        self.setDriver("ST", self.dimmer)
-        self.controller.mqtt_pub(self.cmd_topic, self.dimmer)
-
-    def set_off(self, command):
-        self.dimmer = 0
-        self.setDriver("ST", self.dimmer)
-        self.controller.mqtt_pub(self.cmd_topic, self.dimmer)
-
-    def brighten(self, command):
-        self.controller.mqtt_pub(self.cmd_topic, "+") #added self.dimmer 
-
-    def dim(self, command):
-        self.controller.mqtt_pub(self.cmd_topic, "-") #added self.dimmer
-
-    def query(self, command=None):
-        #self.controller.mqtt_pub(self.cmd_topic, "") #added self.dimmer
-        self.reportDrivers()
-
-    drivers = [{"driver": "ST", "value": 0, "uom": 100},
-				{"driver": "DIMMER", "value": 0, "uom": 100}]
-
-    id = "MQDIMMER"
-    hint = [4, 2, 0, 0]
-    commands = {"QUERY": query, "DON": set_on, "DOF": set_off, "BRT": brighten, "DIM": dim}
 
 if __name__ == "__main__":
     try:

@@ -54,6 +54,6 @@
         <range uom="51" min="0" max="100" prec="0" />
     </editor>
         <editor id="ST_DIMMER">
-        <range uom="100" subset="0-100" nls="DIMMER" />
+        <range uom="100" subset="0-100" prec="0" />
     </editor>
 </editors>
