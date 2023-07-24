@@ -324,7 +324,7 @@ class MQSwitch(udi_interface.Node):
         self.controller.mqtt_pub(self.cmd_topic, "")
         self.reportDrivers()
 
-    drivers = [{"driver": "ST", "value": 0, "uom": 78}]
+    drivers = [{"driver": "ST", "value": 0, "uom": 78, "name": "Power"}]
 
     id = "MQSW"
     hint = [4, 2, 0, 0]
@@ -339,7 +339,7 @@ class MQDimmer(udi_interface.Node):
         self.controller = self.poly.getNode(self.primary)
         self.cmd_topic = device["cmd_topic"]
         self.dimmer = 0
-"""
+
     def updateInfo(self, payload, topic: str):
         try:
             json_payload = json.loads(payload)
@@ -354,21 +354,6 @@ class MQDimmer(udi_interface.Node):
         if self.dimmer > 0 and dimmer == 0:
             self.reportCmd("DOF")
         self.dimmer = dimmer
-        self.setDriver("ST", self.dimmer)
-"""       
-    def updateInfo(self, payload, topic: str):
-        try:
-            data = json.loads(payload)
-        except Exception as ex:
-            LOGGER.error(
-                "Failed to parse MQTT Payload as Json: {} {}".format(ex, payload)
-            )
-            return False
-        if "Dimmer" in data:
-			dimmer = int(data["Dimmer"])
-			self.dimmer = dimmer
-        else:
-			self.dimmer = 0
         self.setDriver("ST", self.dimmer)
 
     def set_on(self, command):
@@ -400,7 +385,7 @@ class MQDimmer(udi_interface.Node):
         self.controller.mqtt_pub(self.cmd_topic, "")
         self.reportDrivers()
 
-    drivers = [{"driver": "ST", "value": 0, "uom": 100}]
+    drivers = [{"driver": "ST", "value": 0, "uom": 100, "name": "Dim Level"}]
 
     id = "MQDIMMER"
     hint = [4, 2, 0, 0]
