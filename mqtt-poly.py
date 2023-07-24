@@ -288,7 +288,7 @@ class Controller(udi_interface.Node):
 
     id = "MQCTRL"
     commands = {"DISCOVER": discover}
-    drivers = [{"driver": "ST", "value": 1, "uom": 2}]
+    drivers = [{"driver": "ST", "value": 1, "uom": 2, "name": "NS Online"}]
 
 
 class MQSwitch(udi_interface.Node):
@@ -346,16 +346,14 @@ class MQDimmer(udi_interface.Node):
             dimmer = int(json_payload['Dimmer'])
         except Exception as ex:
             LOGGER.error(f"Could not decode payload {payload}: {ex}")
-        if 100 < dimmer < 0:
-            LOGGER.error(f"Unexpected Dimmer Value {dimmer}")
-            return
+            return False
         if self.dimmer == 0 and dimmer > 0:
             self.reportCmd("DON")
         if self.dimmer > 0 and dimmer == 0:
             self.reportCmd("DOF")
         self.dimmer = dimmer
         self.setDriver("ST", self.dimmer)
-
+        
     def set_on(self, command):
         try:
             self.dimmer = int(command.get('value'))
@@ -375,11 +373,11 @@ class MQDimmer(udi_interface.Node):
 
     def brighten(self, command):
         self.controller.mqtt_pub(self.cmd_topic, "+")
-        self.setDriver("ST", self.dimmer)
+        self.setDriver("ST", self.dimmer + 10)
 
     def dim(self, command):
         self.controller.mqtt_pub(self.cmd_topic, "-")
-        self.setDriver("ST", self.dimmer)
+        self.setDriver("ST", self.dimmer + 10)
 
     def query(self, command=None):
         self.controller.mqtt_pub(self.cmd_topic, "")
