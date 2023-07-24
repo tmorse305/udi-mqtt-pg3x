@@ -332,7 +332,7 @@ class MQSwitch(udi_interface.Node):
 
 
 # Class for a single channel Dimmer. 
-# Currently supports XXXX
+# Currently supports RJWF-02A
 class MQDimmer(udi_interface.Node):
     def __init__(self, polyglot, primary, address, name, device):
         super().__init__(polyglot, primary, address, name)

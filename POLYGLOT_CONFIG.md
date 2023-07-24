@@ -9,7 +9,7 @@ This Poly provides an interface between MQTT broker and [Polyglot v2](https://gi
 
 Note - your Sonoff MUST run the [Sonoff-Tasmota](https://github.com/arendst/Sonoff-Tasmota) firmware in order to work with MQTT!
 
- 1. You will need a MQTT broker running (can be on RPi running Polyglot).
+ 1. You will need a MQTT broker running (can be on RPi running Polyglot). (Likely already running, if you are on PG3 or PG3x on eISY)
 	 -  See post #1 in [this thread](https://forum.universal-devices.com/topic/24538-sonoff) on how to setup.
 
  2. You will need to define the following custom parameters:
@@ -34,7 +34,8 @@ Note - your Sonoff MUST run the [Sonoff-Tasmota](https://github.com/arendst/Sono
 				- *RGBW* - Control for a micro-controlled RGBW strip http://github.com/sejgit/shelfstrip
 				- *ifan* - Sonoff [iFan](https://itead.cc/product/sonoff-ifan03-wi-fi-ceiling-fan-and-light-controller/) module - motor control, use *switch* as a separate device for light control
                 - *shellyflood* - Shelly [Flood](https://shelly-api-docs.shelly.cloud/gen1/#shelly-flood-overview) sensor; supports monitoring of temperature, water leak detection (`flood`), battery level, and errors.
-                - *dimmer* - Smart Wi-Fi Dimmer switch
+                - *dimmer* - Smart Wi-Fi Light Dimmer Switch (https://www.amazon.com/Dimmer-Switch-Bresuve-Wireless-Compatible/dp/B07WRJWD28?th=1)
+							Important, use cmd_topic: cmnd/topic/dimmer and status_topic: stat/topic/DIMMER (not .../power and ../POWER) 
 			- `"status_topic":` - For switch this will be the cmnd topic (like `cmnd/sonoff1/power`), but on sensors this will be the telemetry topic (like `tele/sonoff/SENSOR`). For Shelly Floods, this will be an array, like `[ "shellies/shellyflood-<unique-id>/sensor/temperature", "shellies/shellyflood-<unique-id>/sensor/flood" ]` (they usually also have a `battery` and `error` topic that follow the same pattern).
 			- `"cmd_topic":` - Is always required, even if the type doesn't support it (like a sensor).  Just enter a generic topic (`cmnd/sensor/POWER`).
 
