@@ -100,10 +100,10 @@ class Controller(udi_interface.Node):
 
         for dev in self.devlist:
             if (
-                "id" not in dev
-                or "status_topic" not in dev
-                or "cmd_topic" not in dev
-                or "type" not in dev
+                    "id" not in dev
+                    or "status_topic" not in dev
+                    or "cmd_topic" not in dev
+                    or "type" not in dev
             ):
                 LOGGER.error("Invalid device definition: {}".format(json.dumps(dev)))
                 continue
@@ -353,7 +353,7 @@ class MQDimmer(udi_interface.Node):
             self.reportCmd("DOF")
         self.dimmer = dimmer
         self.setDriver("ST", self.dimmer)
-        
+
     def set_on(self, command):
         try:
             self.dimmer = int(command.get('value'))
@@ -581,6 +581,7 @@ class MQSensor(udi_interface.Node):
     # payload is direct (like SW) not JSON encoded (like SENSOR)
     # example device: liquid float {OK, LO, HI}
     # example condition: IOT devices sensor connections {OK, NOK, ERR(OR)}
+
 
 class MQFlag(udi_interface.Node):
     def __init__(self, polyglot, primary, address, name, device):
@@ -831,10 +832,10 @@ class ShellyFlood(udi_interface.Node):
 
     drivers = [
         {"driver": "ST", "value": 0, "uom": 2},
-        {"driver": "CLITEMP", "value": 0, "uom": 17}, # Temperature sensor
-        {"driver": "GV0", "value": 0, "uom": 2}, # flood or not
-        {"driver": "BATLVL", "value": 0, "uom": 51}, # battery level indicator
-        {"driver": "GPV", "value": 0, "uom": 56}, # error code
+        {"driver": "CLITEMP", "value": 0, "uom": 17},  # Temperature sensor
+        {"driver": "GV0", "value": 0, "uom": 2},  # flood or not
+        {"driver": "BATLVL", "value": 0, "uom": 51},  # battery level indicator
+        {"driver": "GPV", "value": 0, "uom": 56},  # error code
     ]
 
     id = "SHFLOOD"
@@ -873,7 +874,7 @@ class MQAnalog(udi_interface.Node):
             elif "MQ2_0" in data["ANALOG"]:
                 self.setDriver("GPV", data["ANALOG"]["MQ2_0"])
             else:
-				LOGGER.warn(f"Unable to handle data for topic {topic}")
+                LOGGER.warn(f"Unable to handle data for topic {topic}")
         else:
             self.setDriver("ST", 0)
             self.setDriver("GPV", 0)
@@ -1047,9 +1048,6 @@ class MQRGBWstrip(udi_interface.Node):
     id = "MQRGBW"
 
     commands = {"QUERY": query, "DON": led_on, "DOF": led_off, "SETRGBW": rgbw_set}
-
-
-
 
 
 if __name__ == "__main__":
