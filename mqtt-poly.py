@@ -863,15 +863,15 @@ class MQAnalog(udi_interface.Node):
             if "A0" in data:
                 self.setDriver("GPV", data["ANALOG"]["A0"])
             elif "Range" in data:
-				self.setDriver("GPV", data["ANALOG"]["Range"])
-		    elif "Temperature" in data:
-				self.setDriver("GPV", data["ANALOG"]["Temperature"])
-		    elif "Illuminance" in data:
-				self.setDriver("GPV", data["ANALOG"]["Illuminance"])
-			elif "pH0" in data:
-				self.setDriver("GPV", data["ANALOG"]["pH0"])
-			elif "MQ2_0" in data:
-				self.setDriver("GPV", data["ANALOG"]["MQ2_0"])
+                self.setDriver("GPV", data["ANALOG"]["Range"])
+            elif "Temperature" in data:
+                self.setDriver("GPV", data["ANALOG"]["Temperature"])
+            elif "Illuminance" in data:
+                self.setDriver("GPV", data["ANALOG"]["Illuminance"])
+            elif "pH0" in data:
+                self.setDriver("GPV", data["ANALOG"]["pH0"])
+            elif "MQ2_0" in data:
+                self.setDriver("GPV", data["ANALOG"]["MQ2_0"])
         else:
             self.setDriver("ST", 0)
             self.setDriver("GPV", 0)
