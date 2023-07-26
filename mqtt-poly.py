@@ -872,6 +872,8 @@ class MQAnalog(udi_interface.Node):
                 self.setDriver("GPV", data["ANALOG"]["pH0"])
             elif "MQ2_0" in data["ANALOG"]:
                 self.setDriver("GPV", data["ANALOG"]["MQ2_0"])
+            else:
+				LOGGER.warn(f"Unable to handle data for topic {topic}")
         else:
             self.setDriver("ST", 0)
             self.setDriver("GPV", 0)
