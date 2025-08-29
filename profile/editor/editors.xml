@@ -8,6 +8,9 @@
     <editor id="TEMPF">
         <range uom="17" min="-40" max="176" prec="2" />
     </editor>
+	 <editor id="FLOW">
+        <range uom="130" min="0" max="50" prec="2" />
+    </editor>
     <editor id="HUM">
         <range uom="22" min="0" max="100" prec="2" />
     </editor>
@@ -78,3 +81,4 @@
         <range uom="2" subset="0,1" nls="GOBST" />
     </editor>
 </editors>
+
