@@ -88,6 +88,7 @@
             <st id="GV2" editor="LEDCLR" />
             <st id="GV3" editor="LEDCLR" />
             <st id="GV4" editor="LEDCLR" />
+			<st id="GV5" editor="FLOW" />
         </sts>
         <cmds>
             <sends>
@@ -307,3 +308,4 @@
         </cmds>
     </nodeDef>
 </nodeDefs>
+
