@@ -64,9 +64,9 @@ class MQSensor(udi_interface.Node):
         if "signal" in data:
             if payload == "No Signal":
                 value = 1
-            elif "Weak Signal" in data:
+            elif payload == "Weak Signal":
                 value = 2
-            elif "Strong Signal" in data:
+            elif payload == "Strong Signal":
                 value = 3
             else:
                 value = 0
