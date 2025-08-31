@@ -62,11 +62,11 @@ class MQSensor(udi_interface.Node):
             self.setDriver("GV5", data["flow"])
         # signal
         if "signal" in data:
-            if payload == "No Signal":
+            if "No Signal" in data:
                 value = 1
-            elif payload == "Weak Signal":
+            elif "Weak Signal" in data:
                 value = 2
-            elif payload == "Strong Signal":
+            elif "Strong Signal" in data:
                 value = 3
             else:
                 value = 0
