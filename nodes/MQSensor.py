@@ -70,7 +70,16 @@ class MQSensor(udi_interface.Node):
                 value = 3
             else:
                 value = 0
-            self.setDriver("GV6", value)            
+            self.setDriver("GV6", value)  
+         # server
+        if "server" in data:
+            if data["server"] == "Connecting":
+                value = 1
+            elif data["server"] == "Connected":
+                value = 2
+            else:
+                value = 0
+            self.setDriver("GV7", value)   
         # heatIndex
         if "heatIndex" in data:
             self.setDriver("GPV", data["heatIndex"])
