@@ -161,6 +161,7 @@ class MQSensor(udi_interface.Node):
         {"driver": "GV4", "value": 0, "uom": 100},
         {"driver": "GV5", "value": 0, "uom": 130},
         {"driver": "GV6", "value": 0, "uom": 25},
+        {"driver": "GV7", "value": 0, "uom": 25},
         ]
 
     """
