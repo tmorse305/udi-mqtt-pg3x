@@ -1,5 +1,7 @@
 <editors>
-    
+    <editor id="BOOL">
+        <range uom="2" subset="0,1" />
+    </editor>
     <editor id="ONOFF">
         <range uom="78"/>
     </editor>
@@ -85,6 +87,7 @@
         <range uom="2" subset="0,1" nls="GOBST" />
     </editor>
 </editors>
+
 
 
 
