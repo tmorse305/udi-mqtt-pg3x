@@ -53,9 +53,7 @@ ST-SENSOR-GV1-NAME = LED Brightness
 ST-SENSOR-GV2-NAME = LED Color Red
 ST-SENSOR-GV3-NAME = LED Color Green
 ST-SENSOR-GV4-NAME = LED Color Blue
-ST-SENSOR-GV5-NAME = Flow
-ST-SENSOR-GV6-NAME = Signal
-ST-SENSOR-GV7-NAME = Server
+
 
 CMD-SENSOR-DON-NAME = LED On
 CMD-SENSOR-DOF-NAME = LED Off
@@ -67,6 +65,15 @@ CMDP-B-NAME = Blue
 CMDP-I-NAME = Brightness
 CMDP-F-NAME = Flash
 CMDP-D-NAME = Transition
+
+PGM-CMD-SETLED-FMT = /R// Red ${v}/ /G// Green ${v}/ /B// Blue ${v}/ /I// Brightness ${v}/ /D// in ${v}/ /F//, flash for ${v}/
+
+# droplet
+ND-mqdrop-NAME = MQTT Droplet
+ND-mqdrop-ICON = WaterSensor
+ST-SENSOR-GV5-NAME = Flow
+ST-SENSOR-GV6-NAME = Signal
+ST-SENSOR-GV7-NAME = Server
 SIGNAL-0 = Initializing
 SIGNAL-1 = None
 SIGNAL-2 = Weak
@@ -74,8 +81,6 @@ SIGNAL-3 = Strong
 SERVER-0 = Disconnected
 SERVER-1 = Connecting
 SERVER-2 = Connected
-
-PGM-CMD-SETLED-FMT = /R// Red ${v}/ /G// Green ${v}/ /B// Blue ${v}/ /I// Brightness ${v}/ /D// in ${v}/ /F//, flash for ${v}/
 
 # flag
 ND-mqflag-NAME = MQTT FLAG
@@ -241,6 +246,7 @@ GLOCK-1 = Locked
 ONOFF-0 = Off
 ONOFF-1 = On
 ONOFF-100 = On
+
 
 
 
