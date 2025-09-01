@@ -40,31 +40,23 @@ class MQSensor(udi_interface.Node):
             LOGGER.error("Failed to parse MQTT Payload as Json: {} {}".format(ex, payload))
             return False
 
-        
-        
-        # flow
-        if "flow" in data:
-            self.setDriver("GV5", data["flow"])
-        # signal
-        if "signal" in data:
-            if data["signal"] == "No Signal":
-                value = 1
-            elif data["signal"] == "Weak Signal":
-                value = 2
-            elif data["signal"] == "Strong Signal":
-                value = 3
+        # motion detector
+        if "motion" in data:
+            if data["motion"] == "standby":
+                self.setDriver("ST", 0)
+                if self.motion:
+                    self.motion = False
+                    self.reportCmd("DOF")
             else:
-                value = 0
-            self.setDriver("GV6", value)  
-         # server
-        if "server" in data:
-            if data["server"] == "Connecting":
-                value = 1
-            elif data["server"] == "Connected":
-                value = 2
-            else:
-                value = 0
-            self.setDriver("GV7", value)   
+                self.setDriver("ST", 1)
+                if not self.motion:
+                    self.motion = True
+                    self.reportCmd("DON")
+        else:
+            self.setDriver("ST", 0)
+        # temperature
+        if "temperature" in data:
+            self.setDriver("CLITEMP", data["temperature"])
         # heatIndex
         if "heatIndex" in data:
             self.setDriver("GPV", data["heatIndex"])
@@ -134,8 +126,8 @@ class MQSensor(udi_interface.Node):
         
     # all the drivers - for reference
     drivers = [
-        
-        
+        {"driver": "ST", "value": 0, "uom": 2},
+        {"driver": "CLITEMP", "value": 0, "uom": 17},
         {"driver": "GPV", "value": 0, "uom": 17},
         {"driver": "CLIHUM", "value": 0, "uom": 22},
         {"driver": "LUMIN", "value": 0, "uom": 36},
@@ -144,9 +136,6 @@ class MQSensor(udi_interface.Node):
         {"driver": "GV2", "value": 0, "uom": 100},
         {"driver": "GV3", "value": 0, "uom": 100},
         {"driver": "GV4", "value": 0, "uom": 100},
-        {"driver": "GV5", "value": 0, "uom": 130},
-        {"driver": "GV6", "value": 0, "uom": 25},
-        {"driver": "GV7", "value": 0, "uom": 25},
         ]
 
     """
@@ -159,4 +148,3 @@ class MQSensor(udi_interface.Node):
         "DOF": led_off,
         "SETLED": led_set
         }
-
