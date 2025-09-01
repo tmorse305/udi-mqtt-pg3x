@@ -90,6 +90,7 @@
             <st id="GV4" editor="LEDCLR" />
 			<st id="GV5" editor="FLOW" />
 			<st id="GV6" editor="SIGNAL" />
+			<st id="GV7" editor="SERVER" />
         </sts>
         <cmds>
             <sends>
@@ -309,5 +310,6 @@
         </cmds>
     </nodeDef>
 </nodeDefs>
+
 
 
