@@ -43,7 +43,7 @@ FANSPEED-3 = High
 # sensor
 ND-mqsens-NAME = MQTT Sensor
 ND-mqsens-ICON = MotionSensor
-ST-SENSOR-ST-NAME = Motion detected
+
 ST-SENSOR-CLITEMP-NAME = Temperature
 ST-SENSOR-CLIHUM-NAME = Humidity
 ST-SENSOR-GPV-NAME = Heat Index
@@ -241,6 +241,7 @@ GLOCK-1 = Locked
 ONOFF-0 = Off
 ONOFF-1 = On
 ONOFF-100 = On
+
 
 
 
