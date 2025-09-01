@@ -19,6 +19,7 @@ from nodes import MQSwitch
 from nodes import MQDimmer
 from nodes import MQFan
 from nodes import MQSensor
+from nodes import MQDroplet
 from nodes import MQFlag
 from nodes import MQdht
 from nodes import MQds
@@ -355,6 +356,11 @@ class Controller(udi_interface.Node):
                 elif dev['type'] == "sensor":
                     LOGGER.info(f"Adding {dev['type']}, {name}")
                     self.poly.addNode(MQSensor(self.poly, self.address, address, name, dev))
+                    self._add_status_topics(dev, [dev["status_topic"]])
+
+                elif dev['type'] == "dsensor":
+                    LOGGER.info(f"Adding {dev['type']}, {name}")
+                    self.poly.addNode(MQDroplet(self.poly, self.address, address, name, dev))
                     self._add_status_topics(dev, [dev["status_topic"]])
 
                 elif dev['type'] == "flag":
