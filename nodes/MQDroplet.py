@@ -12,7 +12,7 @@ import json
 LOGGER = udi_interface.LOGGER
 
 class MQSensor(udi_interface.Node):
-    id = 'mqsens'
+    id = 'mqdrop'
     
     """
     This is the class that all the Nodes will be represented by. You will
