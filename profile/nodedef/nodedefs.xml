@@ -78,7 +78,7 @@
     <nodeDef id="mqsens" nls="SENSOR">
         <editors />
         <sts>
-            
+            <st id="ST" editor="BOOL" />
             <st id="CLITEMP" editor="TEMPF" />
             <st id="GPV" editor="TEMPF" />
             <st id="CLIHUM" editor="HUM" />
@@ -310,6 +310,7 @@
         </cmds>
     </nodeDef>
 </nodeDefs>
+
 
 
 
