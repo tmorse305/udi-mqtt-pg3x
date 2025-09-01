@@ -70,7 +70,7 @@ PGM-CMD-SETLED-FMT = /R// Red ${v}/ /G// Green ${v}/ /B// Blue ${v}/ /I// Bright
 
 # droplet
 ND-mqdrop-NAME = MQTT Droplet
-ND-mqdrop-ICON = WaterSensor
+ND-mqdrop-ICON = MotionSensor
 ST-DSENSOR-GV5-NAME = Flow
 ST-DSENSOR-GV6-NAME = Signal
 ST-DSENSOR-GV7-NAME = Server
@@ -246,6 +246,7 @@ GLOCK-1 = Locked
 ONOFF-0 = Off
 ONOFF-1 = On
 ONOFF-100 = On
+
 
 
 
