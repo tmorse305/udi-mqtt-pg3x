@@ -55,6 +55,7 @@ ST-SENSOR-GV3-NAME = LED Color Green
 ST-SENSOR-GV4-NAME = LED Color Blue
 ST-SENSOR-GV5-NAME = Flow
 ST-SENSOR-GV6-NAME = Signal
+ST-SENSOR-GV7-NAME = Server
 
 CMD-SENSOR-DON-NAME = LED On
 CMD-SENSOR-DOF-NAME = LED Off
@@ -70,6 +71,9 @@ SIGNAL-0 = Initializing
 SIGNAL-1 = No Signal
 SIGNAL-2 = Weak Signal
 SIGNAL-3 = Strong Signal
+SERVER-0 = Disconnected
+SERVER-1 = Connecting
+SERVER-2 = Connected
 
 PGM-CMD-SETLED-FMT = /R// Red ${v}/ /G// Green ${v}/ /B// Blue ${v}/ /I// Brightness ${v}/ /D// in ${v}/ /F//, flash for ${v}/
 
@@ -237,5 +241,6 @@ GLOCK-1 = Locked
 ONOFF-0 = Off
 ONOFF-1 = On
 ONOFF-100 = On
+
 
 
