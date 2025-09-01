@@ -112,7 +112,7 @@
             </accepts>
         </cmds>		
     </nodeDef>
-	<nodeDef id="mqdrop" nls="SENSOR">
+	<nodeDef id="mqdrop" nls="DSENSOR">
         <editors />
         <sts>
             <st id="GV5" editor="FLOW" />
@@ -320,6 +320,7 @@
         </cmds>
     </nodeDef>
 </nodeDefs>
+
 
 
 
