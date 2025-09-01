@@ -41,9 +41,7 @@ class MQSensor(udi_interface.Node):
             return False
 
         
-        # temperature
-        if "temperature" in data:
-            self.setDriver("CLITEMP", data["temperature"])
+        
         # flow
         if "flow" in data:
             self.setDriver("GV5", data["flow"])
@@ -137,7 +135,6 @@ class MQSensor(udi_interface.Node):
     # all the drivers - for reference
     drivers = [
         
-        {"driver": "CLITEMP", "value": 0, "uom": 17},
         {"driver": "GPV", "value": 0, "uom": 17},
         {"driver": "CLIHUM", "value": 0, "uom": 22},
         {"driver": "LUMIN", "value": 0, "uom": 36},
