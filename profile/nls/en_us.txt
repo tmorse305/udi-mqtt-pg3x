@@ -68,9 +68,9 @@ CMDP-I-NAME = Brightness
 CMDP-F-NAME = Flash
 CMDP-D-NAME = Transition
 SIGNAL-0 = Initializing
-SIGNAL-1 = No Signal
-SIGNAL-2 = Weak Signal
-SIGNAL-3 = Strong Signal
+SIGNAL-1 = None
+SIGNAL-2 = Weak
+SIGNAL-3 = Strong
 SERVER-0 = Disconnected
 SERVER-1 = Connecting
 SERVER-2 = Connected
@@ -241,6 +241,7 @@ GLOCK-1 = Locked
 ONOFF-0 = Off
 ONOFF-1 = On
 ONOFF-100 = On
+
 
 
 
