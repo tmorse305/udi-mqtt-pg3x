@@ -110,7 +110,17 @@
                     <p id="F" editor="SECOND" />
                 </cmd>
             </accepts>
-        </cmds>
+        </cmds>		
+    </nodeDef>
+	<nodeDef id="mqdrop" nls="SENSOR">
+        <editors />
+        <sts>
+            <st id="GV5" editor="FLOW" />
+			<st id="GV6" editor="SIGNAL" />
+			<st id="GV7" editor="SERVER" />
+        </sts>
+        <cmds>            
+        </cmds>		
     </nodeDef>
         <nodeDef id="mqflag" nls="FLAG">
         <editors />
@@ -310,6 +320,7 @@
         </cmds>
     </nodeDef>
 </nodeDefs>
+
 
 
 
