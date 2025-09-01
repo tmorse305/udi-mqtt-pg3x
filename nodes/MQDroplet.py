@@ -11,7 +11,7 @@ import json
 
 LOGGER = udi_interface.LOGGER
 
-class MQSensor(udi_interface.Node):
+class MQDroplet(udi_interface.Node):
     id = 'mqdrop'
     
     """
