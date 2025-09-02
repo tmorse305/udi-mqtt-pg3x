@@ -64,13 +64,7 @@ class MQDroplet(udi_interface.Node):
                 value = 2
             else:
                 value = 0
-            self.setDriver("GV7", value)   
-       
-    def led_on(self, command):
-        self.controller.mqtt_pub(self.cmd_topic, json.dumps({"state": "ON"}))
-
-    def led_off(self, command):
-        self.controller.mqtt_pub(self.cmd_topic, json.dumps({"state": "OFF"}))  
+            self.setDriver("GV7", value)     
             
     def query(self, command=None):
         """
@@ -93,8 +87,5 @@ class MQDroplet(udi_interface.Node):
     this tells it which method to call. DON calls setOn, etc.
     """
     commands = {
-        "QUERY": query,
-        "DON": led_on,
-        "DOF": led_off,
-        "SETLED": led_set
+        "QUERY": query        
         }
