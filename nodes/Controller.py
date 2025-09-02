@@ -360,7 +360,7 @@ class Controller(udi_interface.Node):
 
                 elif dev['type'] == "dsensor":
                     LOGGER.info(f"Adding {dev['type']}, {name}")
-                    self.poly.addNode(MQDroplet(self.poly, self.address, address, name, dev))
+                    self.poly.addNode(MQSensor(self.poly, self.address, address, name, dev))
                     self._add_status_topics(dev, [dev["status_topic"]])
 
                 elif dev['type'] == "flag":
