@@ -116,7 +116,11 @@
 			<st id="GV6" editor="SIGNAL" />
 			<st id="GV7" editor="SERVER" />
         </sts>
-        <cmds>            
+        <cmds>
+			<sends>
+            </sends>
+            <accepts>            
+            </accepts>
         </cmds>		
     </nodeDef>
         <nodeDef id="mqflag" nls="FLAG">
@@ -317,6 +321,7 @@
         </cmds>
     </nodeDef>
 </nodeDefs>
+
 
 
 
