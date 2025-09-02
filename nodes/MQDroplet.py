@@ -65,64 +65,12 @@ class MQDroplet(udi_interface.Node):
             else:
                 value = 0
             self.setDriver("GV7", value)   
-        # heatIndex
-        if "heatIndex" in data:
-            self.setDriver("GPV", data["heatIndex"])
-        # humidity
-        if "humidity" in data:
-            self.setDriver("CLIHUM", data["humidity"])
-        # light detector reading
-        if "ldr" in data:
-            self.setDriver("LUMIN", data["ldr"])
-        # LED
-        if "state" in data:
-            # LED is present
-            if data["state"] == "ON":
-                self.setDriver("GV0", 100)
-            else:
-                self.setDriver("GV0", 0)
-            if "brightness" in data:
-                self.setDriver("GV1", data["brightness"])
-            if "color" in data:
-                if "r" in data["color"]:
-                    self.setDriver("GV2", data["color"]["r"])
-                if "g" in data["color"]:
-                    self.setDriver("GV3", data["color"]["g"])
-                if "b" in data["color"]:
-                    self.setDriver("GV4", data["color"]["b"])
-
+       
     def led_on(self, command):
         self.controller.mqtt_pub(self.cmd_topic, json.dumps({"state": "ON"}))
 
     def led_off(self, command):
-        self.controller.mqtt_pub(self.cmd_topic, json.dumps({"state": "OFF"}))
-
-    def led_set(self, command):
-        query = command.get("query")
-        red = self._check_limit(int(query.get("R.uom100")))
-        green = self._check_limit(int(query.get("G.uom100")))
-        blue = self._check_limit(int(query.get("B.uom100")))
-        brightness = self._check_limit(int(query.get("I.uom100")))
-        transition = int(query.get("D.uom58"))
-        flash = int(query.get("F.uom58"))
-        cmd = {
-            "state": "ON",
-            "brightness": brightness,
-            "color": {"r": red, "g": green, "b": blue},
-        }
-        if transition > 0:
-            cmd["transition"] = transition
-        if flash > 0:
-            cmd["flash"] = flash
-        self.controller.mqtt_pub(self.cmd_topic, json.dumps(cmd))
-
-    def _check_limit(self, value):
-        if value > 255:
-            return 255
-        elif value < 0:
-            return 0
-        else:
-            return value
+        self.controller.mqtt_pub(self.cmd_topic, json.dumps({"state": "OFF"}))  
             
     def query(self, command=None):
         """
@@ -133,16 +81,8 @@ class MQDroplet(udi_interface.Node):
         self.reportDrivers()
         
     # all the drivers - for reference
-    drivers = [
+    drivers = [       
         
-        {"driver": "GPV", "value": 0, "uom": 17},
-        {"driver": "CLIHUM", "value": 0, "uom": 22},
-        {"driver": "LUMIN", "value": 0, "uom": 36},
-        {"driver": "GV0", "value": 0, "uom": 78},
-        {"driver": "GV1", "value": 0, "uom": 100},
-        {"driver": "GV2", "value": 0, "uom": 100},
-        {"driver": "GV3", "value": 0, "uom": 100},
-        {"driver": "GV4", "value": 0, "uom": 100},
         {"driver": "GV5", "value": 0, "uom": 130},
         {"driver": "GV6", "value": 0, "uom": 25},
         {"driver": "GV7", "value": 0, "uom": 25},
