@@ -5,6 +5,7 @@ from .MQSwitch        import MQSwitch
 from .MQDimmer        import MQDimmer
 from .MQFan           import MQFan
 from .MQSensor        import MQSensor
+from .MQDroplet       import MQDroplet
 from .MQFlag          import MQFlag
 from .MQdht           import MQdht
 from .MQds            import MQds
