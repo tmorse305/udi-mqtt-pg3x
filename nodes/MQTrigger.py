@@ -3,7 +3,7 @@ mqtt-poly-pg3x NodeServer/Plugin for EISY/Polisy
 
 (C) 2024
 
-node MQswitch
+node MQTrigger
 """
 
 import udi_interface
@@ -11,8 +11,8 @@ import udi_interface
 LOGGER = udi_interface.LOGGER
 
 
-class MQSwitch(udi_interface.Node):
-    id = 'MQSW'
+class MQTrigger(udi_interface.Node):
+    id = 'MQTG'
 
     """
     This is the class that all the Nodes will be represented by. You will
