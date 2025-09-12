@@ -26,6 +26,7 @@ from nodes import MQds
 from nodes import MQbme
 from nodes import MQhcsr
 from nodes import MQShellyFlood
+from nodes import MQTrigger
 from nodes import MQAnalog
 from nodes import MQs31
 from nodes import MQraw
