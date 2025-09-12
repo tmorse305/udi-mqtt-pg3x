@@ -12,6 +12,7 @@ from .MQds            import MQds
 from .MQbme           import MQbme
 from .MQhcsr          import MQhcsr
 from .MQShellyFlood   import MQShellyFlood
+from .MQTrigger       import MGTrigger
 from .MQAnalog        import MQAnalog
 from .MQs31           import MQs31
 from .MQraw           import MQraw
