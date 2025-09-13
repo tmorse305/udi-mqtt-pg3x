@@ -75,7 +75,7 @@ class MQTrigger(udi_interface.Node):
         LOGGER.debug("cmd_ping:")
         headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",}
         # params = {"trigger": "023dfc97-3d2e-4c32-a3e2-b8ee5c0e7ca9", "token": "af23886c-91a9-4b84-9a36-1541bc9237b9"}
-        params = {"trigger": {self.status_topic}, "token": {self.cmd_topic}}
+        params = {"trigger": self.status_topic, "token": self.cmd_topic}
         LOGGER.debug(f"params: {params}")
         webhook_url = "https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php"
         # r = self.client.post(webhook_url, params=params, headers=headers)
