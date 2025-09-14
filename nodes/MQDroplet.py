@@ -73,7 +73,7 @@ class MQDroplet(udi_interface.Node):
         there is a need.
         """
         self.controller.mqtt_pub(self.cmd_topic, "Online")
-        LOGGER.debug(f"cmd_topic: {self.cmd_topic})
+        LOGGER.debug(f"cmd_topic: {self.cmd_topic}")
         self.reportDrivers()
         
     # all the drivers - for reference
