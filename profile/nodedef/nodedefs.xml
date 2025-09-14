@@ -133,7 +133,8 @@
         <cmds>
 			<sends>
             </sends>
-            <accepts>            
+            <accepts> 
+				 <cmd id="QUERY" />
             </accepts>
         </cmds>		
     </nodeDef>
@@ -335,6 +336,7 @@
         </cmds>
     </nodeDef>
 </nodeDefs>
+
 
 
 
