@@ -307,6 +307,9 @@ class Controller(udi_interface.Node):
         st = self.poly.updateProfile()
         return st
 
+    def getURL(self) # passing webhook url to MQTrigger node
+        return webhook_url
+
     def discover(self, command = None):
         """
         Do discovery here. Called from controller start method
