@@ -81,6 +81,7 @@ class MQTrigger(udi_interface.Node):
         # r = self.client.post(webhook_url, params=params, headers=headers)
         hook_url = self.controller.getURL()
         encoded_url = f"{hook_url}?{urllib3.request.urlencode(params)}"
+        LOGGER.debug(f"URL: {encoded_url}")
         r = self.http.request('GET',encoded_url,headers=headers)
         LOGGER.debug(f"Response Code: {r.status}")
 
