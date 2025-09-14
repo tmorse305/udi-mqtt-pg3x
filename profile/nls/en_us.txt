@@ -17,7 +17,7 @@ CMD-SWITCH-DOF-NAME = Off
 
 # trigger
 ND-MQTG-NAME = Virtual Trigger
-ND-MQTG-ICON = GenericRsp
+ND-MQTG-ICON = Electricity
 CMD-TRIGGER-DON-NAME = On
 # CMD-TRIGGER-DOF-NAME = Off
 
@@ -252,6 +252,7 @@ GLOCK-1 = Locked
 ONOFF-0 = Off
 ONOFF-1 = On
 ONOFF-100 = On
+
 
 
 
