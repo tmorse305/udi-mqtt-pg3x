@@ -1,4 +1,4 @@
-"""
+f."""
 mqtt-poly-pg3x NodeServer/Plugin for EISY/Polisy
 
 (C) 2024
@@ -308,7 +308,7 @@ class Controller(udi_interface.Node):
         return st
 
     def getURL(self): # passing webhook url to MQTrigger node **************
-        return webhook_url
+        return self.webhook_url
 
     def discover(self, command = None):
         """
