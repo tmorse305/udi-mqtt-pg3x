@@ -32,6 +32,7 @@ class MQDroplet(udi_interface.Node):
         self.cmd_topic = device["cmd_topic"]
         self.on = False
         self.motion = False
+        self.qrypaylaod = ""
 
     def updateInfo(self, payload, topic: str):
         try:
@@ -72,8 +73,8 @@ class MQDroplet(udi_interface.Node):
         the parent class, so you don't need to override this method unless
         there is a need.
         """
-        qrypayload = "{"Online": 1}"
-        LOGGER.debug(f"payload: {qrypayload}")
+        self.qrypayload = "{"Online": 1}"
+        LOGGER.debug(f"payload: {self.qrypayload}")
         self.controller.mqtt_pub(self.cmd_topic, qrypayload)
         LOGGER.debug(f"cmd_topic: {self.cmd_topic}")
         self.reportDrivers()
