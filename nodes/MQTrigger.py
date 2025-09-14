@@ -59,12 +59,12 @@ class MQTrigger(udi_interface.Node):
             if not self.on:
                 self.reportCmd("DON")
                 self.on = True
-            self.setDriver("ST", 100)
+            # self.setDriver("ST", 100)
         elif payload == "OFF":
             if self.on:
                 self.reportCmd("DOF")
                 self.on = False
-            self.setDriver("ST", 0)
+            # self.setDriver("ST", 0)
         else:
             LOGGER.error("Invalid payload {}".format(payload))
 
