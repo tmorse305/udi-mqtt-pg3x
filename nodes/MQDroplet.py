@@ -72,6 +72,7 @@ class MQDroplet(udi_interface.Node):
         the parent class, so you don't need to override this method unless
         there is a need.
         """
+        self.controller.mqtt_pub(self.cmd_topic, "Online")
         self.reportDrivers()
         
     # all the drivers - for reference
