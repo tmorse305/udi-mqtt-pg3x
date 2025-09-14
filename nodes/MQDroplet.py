@@ -75,7 +75,7 @@ class MQDroplet(udi_interface.Node):
         """
         self.qrypayload = '{"Online": 1}'
         LOGGER.debug(f"payload: {self.qrypayload}")
-        self.controller.mqtt_pub(self.cmd_topic, qrypayload)
+        self.controller.mqtt_pub(self.cmd_topic, self.qrypayload)
         LOGGER.debug(f"cmd_topic: {self.cmd_topic}")
         self.reportDrivers()
         
