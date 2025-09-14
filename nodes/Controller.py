@@ -1,4 +1,4 @@
-f."""
+"""
 mqtt-poly-pg3x NodeServer/Plugin for EISY/Polisy
 
 (C) 2024
