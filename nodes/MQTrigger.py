@@ -77,7 +77,7 @@ class MQTrigger(udi_interface.Node):
         # params = {"trigger": "023dfc97-3d2e-4c32-a3e2-b8ee5c0e7ca9", "token": "af23886c-91a9-4b84-9a36-1541bc9237b9"}
         params = {"trigger": self.status_topic, "token": self.cmd_topic}
         LOGGER.debug(f"params: {params}")
-        webhook_url = "https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php"
+        # webhook_url = "https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php"
         # r = self.client.post(webhook_url, params=params, headers=headers)
         encoded_url = f"{webhook_url}?{urllib3.request.urlencode(params)}"
         r = self.http.request('GET',encoded_url,headers=headers)
