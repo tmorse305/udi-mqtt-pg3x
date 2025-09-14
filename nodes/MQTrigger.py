@@ -71,16 +71,13 @@ class MQTrigger(udi_interface.Node):
     def cmd_on(self, command):
         self.http = urllib3.PoolManager()
         LOGGER.debug(f"self.cmd_topic: {self.cmd_topic}")
-        LOGGER.debug(f"self.cmd_topic: {self.status_topic}")
+        LOGGER.debug(f"self.status_topic: {self.status_topic}")
         LOGGER.debug("cmd_ping:")
-        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",}
-        # params = {"trigger": "023dfc97-3d2e-4c32-a3e2-b8ee5c0e7ca9", "token": "af23886c-91a9-4b84-9a36-1541bc9237b9"}
+        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",}        
         params = {"trigger": self.status_topic, "token": self.cmd_topic}
-        LOGGER.debug(f"params: {params}")
-        # webhook_url = "https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php"
-        # r = self.client.post(webhook_url, params=params, headers=headers)
-        hook_url = self.controller.getURL()
-        encoded_url = f"{hook_url}?{urllib3.request.urlencode(params)}"
+        LOGGER.debug(f"params: {params}")        
+        # hook_url = self.controller.getURL()
+        encoded_url = f"{self.controller.getURL()}?{urllib3.request.urlencode(params)}"
         LOGGER.debug(f"URL: {encoded_url}")
         r = self.http.request('GET',encoded_url,headers=headers)
         LOGGER.debug(f"Response Code: {r.status}")
