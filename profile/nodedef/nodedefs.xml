@@ -35,8 +35,7 @@
     </nodeDef>
 	<nodeDef id="MQTG" nls="TRIGGER">
         <editors />
-        <sts>
-            <st id="ST" editor="ONOFF" />
+        <sts>            
         </sts>
         <cmds>
             <sends>
@@ -336,6 +335,7 @@
         </cmds>
     </nodeDef>
 </nodeDefs>
+
 
 
 
