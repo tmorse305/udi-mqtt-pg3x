@@ -340,6 +340,7 @@ class Controller(udi_interface.Node):
                 name = dev["id"]  # if there is no 'friendly name' use the ID instead
             address = Controller._format_device_address(dev)
             if not self.poly.getNode(address):
+                LOGGER.debug(f"Type: {dev["Type"]")
                 if dev["type"] == "switch":
                     LOGGER.info(f"Adding {dev['type']}, {name}")
                     self.poly.addNode(MQSwitch(self.poly, self.address, address, name, dev))
