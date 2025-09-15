@@ -45,7 +45,7 @@ class MQDroplet(udi_interface.Node):
         
         # flow
         if "flow" in data:
-            self.gallons = data["flow"] * 1
+            self.gallons = data["flow"] * 0.264
             self.setDriver("GV5", self.gallons)
         # signal
         if "signal" in data:
