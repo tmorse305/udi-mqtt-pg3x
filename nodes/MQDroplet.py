@@ -83,7 +83,7 @@ class MQDroplet(udi_interface.Node):
     # all the drivers - for reference
     drivers = [       
         
-        {"driver": "GV5", "value": 0, "uom": 69},
+        {"driver": "GV5", "value": 0, "uom": 143},
         {"driver": "GV6", "value": 0, "uom": 25},
         {"driver": "GV7", "value": 0, "uom": 25},
         ]
