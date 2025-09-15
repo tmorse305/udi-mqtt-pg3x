@@ -346,7 +346,7 @@ class Controller(udi_interface.Node):
                     self.poly.addNode(MQSwitch(self.poly, self.address, address, name, dev))
                     self._add_status_topics(dev, [dev["status_topic"]])
                     
-                if dev["type"] == "trigger":
+                elif dev["type"] == "trigger":
                     LOGGER.info(f"Adding {dev['type']}, {name}")
                     self.poly.addNode(MQTrigger(self.poly, self.address, address, name, dev))
                     self._add_status_topics(dev, [dev["status_topic"]])
