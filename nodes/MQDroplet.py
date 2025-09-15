@@ -73,9 +73,9 @@ class MQDroplet(udi_interface.Node):
         the parent class, so you don't need to override this method unless
         there is a need.
         """
-        self.qrypayload = '{"online": 1}'
-        LOGGER.debug(f"payload: {self.qrypayload}")
-        self.controller.mqtt_pub(self.cmd_topic, self.qrypayload)
+        #self.qrypayload = '{"online": 1}'# payload to get status update from Droplet
+        #LOGGER.debug(f"payload: {self.qrypayload}")
+        self.controller.mqtt_pub(self.cmd_topic, '{"online": 1}')
         LOGGER.debug(f"cmd_topic: {self.cmd_topic}")
         self.reportDrivers()
         
