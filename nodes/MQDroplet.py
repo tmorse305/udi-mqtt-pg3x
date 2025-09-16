@@ -31,17 +31,14 @@ class MQDroplet(udi_interface.Node):
         self.controller = self.poly.getNode(self.primary)
         self.cmd_topic = device["cmd_topic"]
         self.on = False
-        self.motion = False
-        self.qrypaylaod = ""
+        self.motion = False        
 
     def updateInfo(self, payload, topic: str):
         try:
             data = json.loads(payload)
         except Exception as ex:
             LOGGER.error("Failed to parse MQTT Payload as Json: {} {}".format(ex, payload))
-            return False
-
-        
+            return False        
         
         # flow
         if "flow" in data:
@@ -74,10 +71,8 @@ class MQDroplet(udi_interface.Node):
         the parent class, so you don't need to override this method unless
         there is a need.
         """
-        #self.qrypayload = '{"online": 1}'# payload to get status update from Droplet
-        #LOGGER.debug(f"payload: {self.qrypayload}")
-        self.controller.mqtt_pub(self.cmd_topic, '{"online": 1}')
-        LOGGER.debug(f"cmd_topic: {self.cmd_topic}")
+        
+        self.controller.mqtt_pub(self.cmd_topic, '{"online": 1}')        
         self.reportDrivers()
         
     # all the drivers - for reference
