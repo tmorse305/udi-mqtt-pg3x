@@ -82,21 +82,21 @@ class MQTrigger(udi_interface.Node):
         r = self.http.request('GET',encoded_url,headers=headers)
         LOGGER.debug(f"Response Code: {r.status}")
 
-    def cmd_off(self, command):
-        self.on = False
-        self.controller.mqtt_pub(self.cmd_topic, "OFF")
+   # def cmd_off(self, command):
+        #self.on = False
+        #self.controller.mqtt_pub(self.cmd_topic, "OFF")
 
-    def query(self, command=None):
+    #def query(self, command=None):
         """
             Called by ISY to report all drivers for this node. This is done in
             the parent class, so you don't need to override this method unless
             there is a need.
             """
-        self.controller.mqtt_pub(self.cmd_topic, "")
-        self.reportDrivers()
+        #self.controller.mqtt_pub(self.cmd_topic, "")
+        #self.reportDrivers()
 
     # all the drivers - for reference
-    drivers = [
+    #drivers = [
         {"driver": "ST", "value": 0, "uom": 78, "name": "Power"}
     ]
 
@@ -104,9 +104,7 @@ class MQTrigger(udi_interface.Node):
     This is a dictionary of commands. If ISY sends a command to the NodeServer,
     this tells it which method to call. DON calls setOn, etc.
     """
-    commands = {
-        "QUERY": query,
-        "DON": cmd_on,
-        "DOF": cmd_off}
+    commands = {        
+        "DON": cmd_on}
 
     hint = [4, 2, 0, 0]
