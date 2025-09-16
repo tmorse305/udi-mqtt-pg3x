@@ -38,9 +38,7 @@
         <sts>            
         </sts>
         <cmds>
-            <sends>
-	    	<cmd id="DON" />
-	    	<cmd id="DOF" />
+            <sends>	    	
             </sends>
             <accepts>                
                 <cmd id="DON" />                
@@ -336,6 +334,7 @@
         </cmds>
     </nodeDef>
 </nodeDefs>
+
 
 
 
