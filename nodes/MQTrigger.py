@@ -97,8 +97,8 @@ class MQTrigger(udi_interface.Node):
 
     # all the drivers - for reference
     #drivers = [
-        {"driver": "ST", "value": 0, "uom": 78, "name": "Power"}
-    ]
+    #    {"driver": "ST", "value": 0, "uom": 78, "name": "Power"}
+    #]
 
     """
     This is a dictionary of commands. If ISY sends a command to the NodeServer,
