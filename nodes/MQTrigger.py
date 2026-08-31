@@ -77,7 +77,8 @@ class MQTrigger(udi_interface.Node):
         params = {"trigger": self.status_topic, "token": self.cmd_topic}
         LOGGER.debug(f"params: {params}")        
         # hook_url = self.controller.getURL()
-        encoded_url = f"{self.controller.getURL()}?{urllib3.request.urlencode(params)}"
+        # encoded_url = f"{self.controller.getURL()}?{urllib3.request.urlencode(params)}"
+        encoded_url = f"{self.controller.getURL()}?{urllib.parse.urlencode(params)}"
         LOGGER.debug(f"URL: {encoded_url}")
         r = self.http.request('GET',encoded_url,headers=headers)
         LOGGER.debug(f"Response Code: {r.status}")
