@@ -8,7 +8,7 @@ node MQTrigger
 
 import udi_interface
 import urllib3
-import urllib
+import urllib.parse
 
 LOGGER = udi_interface.LOGGER
 
